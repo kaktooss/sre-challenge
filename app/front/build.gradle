@@ -10,9 +10,7 @@ dependencies {
     implementation "org.springframework.boot:spring-boot-starter-validation"
     implementation "org.springframework.kafka:spring-kafka"
 
-    implementation "io.springfox:springfox-swagger2:$swaggerUiVersion"
-    implementation "io.springfox:springfox-swagger-ui:$swaggerUiVersion"
-    implementation "io.springfox:springfox-spring-web:$swaggerUiVersion"
+    implementation "org.springdoc:springdoc-openapi-starter-webmvc-ui:$springdocVersion"
 
     testImplementation("org.springframework.boot:spring-boot-starter-test") {
         exclude module: "mockito-core"
