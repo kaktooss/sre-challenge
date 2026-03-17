@@ -1,11 +1,11 @@
 # SRE Coding Challenge
 
-You are tasked with deploying a solution to Kubernetes cluster. You may use Minikube, Microk8s, k3s or any other Kubernetes distribution  
-Solution consists of 3 SpringBoot applications, Kafka deployment to support messaging and PostgreSQL database to provide persistence layer.
+You are tasked with deploying a solution to the Kubernetes cluster. You may use Minikube, Microk8s, k3s or any other Kubernetes distribution.
+Solution consists of three SpringBoot applications, Kafka deployment to support messaging and PostgreSQL database to provide a persistence layer.
 Application deployment should use helm (https://helm.sh/), Kafka and Postgres may be deployed with any technology you like.
 
-We do not expect too much automation (few bash scripts should work just fine). In case you prefer to automate everything, 
-you may use any flavour of automation tools, Ansible, Terraform - everything will work, You may even setup CI/CD flow using Jenkins/Tekton/Drone/etc. ;)
+We do not expect too much automation (a few bash scripts should work just fine). In case you prefer to automate everything,
+you may use any flavor of automation tools, Ansible, Terraform – everything will work. You may even set up a CI / CD flow using Jenkins/Tekton/Drone/etc. ;)
 
 ## Overall architecture
 
@@ -23,7 +23,7 @@ you may use any flavour of automation tools, Ansible, Terraform - everything wil
 
 ## Database
 
-Application developed with PostgreSQL 11.5
+Application developed with PostgreSQL 16+
 
 Database schema created with Back application first run
 
@@ -31,7 +31,7 @@ Database schema created with Back application first run
 
 ### Build applications
 
-You need Java 11+ installed, then run
+You need Java 21+ installed, then run
 
 `./gradlew clean build`
 
@@ -47,7 +47,7 @@ Docker:
 SpringBoot additional config arg if needed. Additional config values will override default.
 `--spring.config.additional-location=path-to-additional-config`
 
-Health check exposed as 
+Health check exposed as
 `http://localhost:{management.server.port}/health`
 
 Applications expose API management interface as
@@ -62,7 +62,7 @@ server.port: 8080
 ################### Kafka ##############################
 spring:
   kafka:
-    bootstrap-servers:  {{ kafka-bootstrap-goes here }}
+    bootstrap-servers: -kafka-bootstrap-goes-here-
 
 ################### Logging settings ###################
 logging:
@@ -80,17 +80,17 @@ Sample application configuration `application.yaml` file
 ```yaml
 spring:
   kafka:
-    bootstrap-servers: {{ kafka-bootstrap-goes here }}
+    bootstrap-servers: -kafka-bootstrap-goes-here-
   datasource.url: jdbc:postgresql://localhost:5432/postgres
-  datasource.username: {{ username }}
-  datasource.password: {{ password }}
+  datasource.username: -username-
+  datasource.password: -password-
 
 management.server.port: 8081
 ```
 
-Hint: 
+Hint:
 You may use Spring Boot relaxed binding to pass parameters through environment variables
-https://docs.spring.io/spring-boot/docs/2.1.8.RELEASE/reference/html/boot-features-external-config.html#boot-features-external-config-relaxed-binding
+https://docs.spring.io/spring-boot/reference/features/external-config.html#features.external-config.typesafe-configuration-properties.relaxed-binding
 
 `SPRING_DATASOURCE_USERNAME=postgres`
 
@@ -101,8 +101,8 @@ Sample application configuration `application.yaml` file
 ```yaml
 spring:
   datasource.url: jdbc:postgresql://localhost:5432/postgres
-  datasource.username: {{ username }}
-  datasource.password: {{ password }}
+  datasource.username: -username-
+  datasource.password: -password-
 
 management.server.port: 8081
 ```

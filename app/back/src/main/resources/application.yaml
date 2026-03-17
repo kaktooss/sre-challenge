@@ -20,16 +20,12 @@ spring:
 management:
   info.git.mode: full
   server:
-    port: 8083
+    port: 8081
     address: 0.0.0.0
   endpoints:
-    enabled-by-default: false
     web:
       base-path: /
       exposure:
         include: health, info, metrics
-  endpoint:
-    health:
-      enabled: true
-    metrics:
-      enabled: true
+    access:
+      default: read_only

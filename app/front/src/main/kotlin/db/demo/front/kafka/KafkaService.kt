@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service
 
 @Service
 class KafkaService(
-  private val template: KafkaTemplate<String, Command>
+  private val template: KafkaTemplate<String, Command>,
 ) {
 
   private val log = logger()

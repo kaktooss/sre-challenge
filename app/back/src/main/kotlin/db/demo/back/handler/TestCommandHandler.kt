@@ -17,8 +17,9 @@ import kotlin.time.ExperimentalTime
 import kotlin.time.measureTime
 
 @Service
+@Transactional
 class TestCommandHandler(
-  private val testRepository: TestRepository
+  private val testRepository: TestRepository,
 ) {
 
   private val log = logger()
@@ -48,13 +49,13 @@ class TestCommandHandler(
           log.info("Time: $this")
         }
       }
+
       else -> {
         saveProcessed(message = command.message, calculated = command.calculated)
       }
     }
   }
 
-  @Transactional
   fun saveProcessed(message: String?, calculated: Double) {
     val newEntity = TestEntity()
     newEntity.message = message

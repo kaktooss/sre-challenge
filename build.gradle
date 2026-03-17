@@ -4,6 +4,7 @@ buildscript {
         mavenCentral()
     }
     dependencies {
+        classpath "io.spring.gradle:dependency-management-plugin:$springDependencyManagementVersion"
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlinVersion"
         classpath "org.jetbrains.kotlin:kotlin-allopen:$kotlinVersion"
         classpath "org.springframework.boot:spring-boot-gradle-plugin:$springBootVersion"
@@ -19,24 +20,12 @@ apply plugin: "idea"
 repositories {
     mavenLocal()
     mavenCentral()
-    jcenter()
-
 }
 
-sourceCompatibility = 11
-targetCompatibility = 11
+sourceCompatibility = JavaVersion.VERSION_21
+targetCompatibility = JavaVersion.VERSION_21
 version = "0.1.0"
-
-compileKotlin {
-    kotlinOptions {
-        jvmTarget = 11
-    }
-}
-compileTestKotlin {
-    kotlinOptions {
-        jvmTarget = 11
-    }
-}
+ext["kotlin.version"] = kotlinVersion
 
 subprojects {
     group = "ch.demo"
@@ -52,7 +41,6 @@ subprojects {
     repositories {
         mavenLocal()
         mavenCentral()
-        jcenter()
     }
 
     ext {
@@ -62,19 +50,11 @@ subprojects {
     apply plugin: "java"
     apply plugin: "kotlin"
 
-    sourceCompatibility = 11.0
-    targetCompatibility = 11.0
-    compileKotlin {
-        kotlinOptions {
-            jvmTarget = "11"
-        }
+    sourceCompatibility = JavaVersion.VERSION_21
+    targetCompatibility = JavaVersion.VERSION_21
+    kotlin {
+        jvmToolchain(21)
     }
-    compileTestKotlin {
-        kotlinOptions {
-            jvmTarget = "11"
-        }
-    }
-
     dependencies {
         implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlinVersion"
 

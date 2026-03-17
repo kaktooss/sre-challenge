@@ -14,7 +14,7 @@ import kotlin.time.measureTime
 
 @Service
 class ProcessEventService(
-  private val kafkaService: KafkaService
+  private val kafkaService: KafkaService,
 ) {
   private val log = logger()
 
@@ -24,6 +24,7 @@ class ProcessEventService(
       is TestCommand -> {
         processTestCommand(command)
       }
+
       else -> throw IllegalArgumentException("Unknown Event: ${command.javaClass}")
     }
   }
