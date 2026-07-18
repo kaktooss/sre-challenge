@@ -17,6 +17,15 @@ management:
     web:
       base-path: /
       exposure:
-        include: health, info, metrics
+        include: health, info, metrics, prometheus
     access:
       default: read_only
+  endpoint:
+    health:
+      probes:
+        enabled: true
+      group:
+        liveness:
+          include: livenessState
+        readiness:
+          include: readinessState

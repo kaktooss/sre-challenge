@@ -49,6 +49,8 @@ SpringBoot additional config arg if needed. Additional config values will overri
 
 Health check exposed as
 `http://localhost:{management.server.port}/health`
+`http://localhost:{management.server.port}/health/liveness`  
+`http://localhost:{management.server.port}/health/readiness`  
 
 Applications expose API management interface as
 `http://localhost:{server.port}/swagger-ui.html`
