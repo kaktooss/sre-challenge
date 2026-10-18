@@ -9,7 +9,6 @@ import org.springframework.scheduling.annotation.Async
 import org.springframework.stereotype.Service
 import kotlin.math.atan
 import kotlin.math.tan
-import kotlin.time.ExperimentalTime
 import kotlin.time.measureTime
 
 @Service
@@ -29,7 +28,6 @@ class ProcessEventService(
     }
   }
 
-  @OptIn(ExperimentalTime::class)
   private fun processTestCommand(command: TestCommand) {
     if (command.loadFront != 0) {
       measureTime {

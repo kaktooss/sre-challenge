@@ -13,7 +13,6 @@ import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
 import kotlin.math.atan
 import kotlin.math.tan
-import kotlin.time.ExperimentalTime
 import kotlin.time.measureTime
 
 @Service
@@ -24,7 +23,6 @@ class TestCommandHandler(
 
   private val log = logger()
 
-  @OptIn(ExperimentalTime::class)
   @KafkaListener(
     topics = [testCommand],
     concurrency = "2"
